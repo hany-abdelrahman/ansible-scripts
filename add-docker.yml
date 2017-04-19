@@ -1,0 +1,5 @@
+---
+- hosts: master,slaves,webserver
+  become: true
+  roles:
+    - angstwad.docker_ubuntu
