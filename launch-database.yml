@@ -1,0 +1,17 @@
+--- 
+- hosts: database
+  become: true
+  tasks:  
+    - name: Pull MySQL from docker  
+      docker_image:
+        name: library/mysql
+
+    - name: Start Mysql 
+      command: docker run -d -p 3306:3306 -e MYSQL_USER=dbuser -e MYSQL_PASSWORD=dbpassword -e MYSQL_DATABASE=viewsdb -e MYSQL_ROOT_PASSWORD=rootpassword --name labfirst_mysql mysql
+
+    - name: Wait for database to be available
+      command: docker exec labfirst_mysql mysqladmin ping -uroot -prootpassword
+      register: result
+      until: result.rc == 0
+      retries: 10
+      delay: 10

@@ -1,7 +1,8 @@
--- include ec2_launch_server.yml
--- include ec2_launch_master.yml
--- include ec2_launch_slaves.yml
--- include add_python.yml
--- include add-docker.yml
--- include launch-server.yml
--- include launch-locust.yml
+---
+#- include: init-local.yml
+#- include: launch_instances.yml
+- include: add-python.yml
+- include: add-docker.yml
+- include: launch-database.yml
+- include: launch-server.yml
+- include: launch-locust.yml

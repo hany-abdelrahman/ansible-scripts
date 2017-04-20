@@ -1,0 +1,12 @@
+---
+#Those are most likely to be used as defined here
+image: ami-b374d5a5 #ubuntu 14 ami-9eaa1cf6  Change the AMI, from which you want to launch the server
+security_group: webserver # Change the security group name here
+aws_key: ~/.ssh/amazon.pub
+region: us-east-1 # Change the Region
+keypair: ansible # Change the keypair name
+instance_type: t2.medium
+# Those are most likely to be changed
+count: 1
+instance_tag: webserver
+host_group: webserver

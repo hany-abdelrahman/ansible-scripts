@@ -18,20 +18,9 @@
       git:  repo='https://github.com/hany-abdelrahman/example-spring.git' dest=/home/server/ force=yes
       tags: code
 
-    - name: Pull MySQL from docker  
-      docker_image:
-        name: library/mysql
-
-    - name: Start Mysql 
-      command: docker run -d -p 3306:3306 -e MYSQL_USER=dbuser -e MYSQL_PASSWORD=dbpassword -e MYSQL_DATABASE=viewsdb -e MYSQL_ROOT_PASSWORD=rootpassword --name labfirst_mysql mysql
-
-    - name: Wait for database to be available
-      command: docker exec labfirst_mysql mysqladmin ping -uroot -prootpassword
-      register: result
-      until: result.rc == 0
-      retries: 10
-      delay: 5
-              
+    - name: Copy Properties File
+      template: src=./templates/application.properties.j2 dest=/home/server/src/main/resources/application.properties
+      
     - name: Launch Spring Server
       shell: nohup mvn -f /home/server/pom.xml clean install spring-boot:start -Dfork=true
       tags: launch, launch-server 

@@ -1,0 +1,23 @@
+[local]
+localhost ansible_connection=local
+
+[master:vars]
+ansible_ssh_user=ubuntu
+
+[slaves:vars]
+ansible_ssh_user=ubuntu
+
+[webserver:vars]
+ansible_ssh_user=ubuntu
+
+[database:vars]
+ansible_ssh_user=ubuntu
+
+[master]
+
+[slaves]
+
+[webserver]
+
+[database]
+
