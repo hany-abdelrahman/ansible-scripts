@@ -13,6 +13,9 @@ ansible_ssh_user=ubuntu
 [database:vars]
 ansible_ssh_user=ubuntu
 
+[grafana:vars]
+ansible_ssh_user=ubuntu
+
 [master]
 
 [slaves]
@@ -20,4 +23,6 @@ ansible_ssh_user=ubuntu
 [webserver]
 
 [database]
+
+[grafana]
 

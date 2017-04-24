@@ -5,3 +5,4 @@
     - { role: launch_ec2, count: 1, instance_tag: master, host_group: master }
     - { role: launch_ec2, count: 1, instance_tag: webserver, host_group: webserver }
     - { role: launch_ec2, count: 1, instance_tag: database, host_group: database }
+    - { role: launch_ec2, count: 1, instance_tag: grafana, host_group: grafana }

@@ -1,5 +1,5 @@
 ---
-- hosts: master,slaves,webserver,database
+- hosts: master,slaves,webserver,database,grafana
   become: true
   gather_facts: False
   tasks:

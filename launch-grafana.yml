@@ -1,0 +1,14 @@
+--- 
+- hosts: grafana
+  become: true
+  tasks:  
+    - name: Pull Graphite, Grafana from docker  
+      docker_image:
+        name: choopooly/grafana-graphite
+
+    - name: Start Grafana
+      command: docker run -d -p 80:80 -p 2003:2003 -p 8125:8125/udp -p 8126:8126 --name grafana-dashboard choopooly/grafana-graphite
+
+    - name: Wait for Graphite to be available
+      wait_for: port=2003 delay=60 timeout=320 state=started
+
