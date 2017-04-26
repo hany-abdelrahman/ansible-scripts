@@ -10,3 +10,5 @@ instance_type: t2.medium
 count: 1
 instance_tag: webserver
 host_group: webserver
+volume_size: 8
+wait_for_ssh: False

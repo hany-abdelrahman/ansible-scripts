@@ -1,8 +1,19 @@
 ---
 - hosts: local
   roles:
-    - { role: launch_ec2, count: 3, instance_tag: slaves, host_group: slaves }
+    - { role: launch_ec2, count: 1, instance_tag: hadoop, host_group: hadoop-master, volume_size: 350}
+    - { role: launch_ec2, count: 4, instance_tag: hadoop, host_group: hadoop-slaves, volume_size: 350}
+    - { role: launch_ec2, count: 3, instance_tag: slaves, host_group: slaves}
     - { role: launch_ec2, count: 1, instance_tag: master, host_group: master }
     - { role: launch_ec2, count: 1, instance_tag: webserver, host_group: webserver }
-    - { role: launch_ec2, count: 1, instance_tag: database, host_group: database }
     - { role: launch_ec2, count: 1, instance_tag: grafana, host_group: grafana }
+
+  post_tasks:
+    - name: Check that instances are ready 
+      local_action: wait_for 
+                    host= "{{item}}" 
+                    port=22 
+                    delay=60 
+                    timeout=320
+                    state=started
+      with_items: "{{ groups['all'] }}"

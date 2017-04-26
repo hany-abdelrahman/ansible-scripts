@@ -10,10 +10,13 @@ ansible_ssh_user=ubuntu
 [webserver:vars]
 ansible_ssh_user=ubuntu
 
-[database:vars]
+[grafana:vars]
 ansible_ssh_user=ubuntu
 
-[grafana:vars]
+[hadoop-master:vars]
+ansible_ssh_user=ubuntu
+
+[hadoop-slaves:vars]
 ansible_ssh_user=ubuntu
 
 [master]
@@ -22,7 +25,8 @@ ansible_ssh_user=ubuntu
 
 [webserver]
 
-[database]
-
 [grafana]
 
+[hadoop-master]
+
+[hadoop-slaves]

@@ -1,5 +1,5 @@
 ---
-- hosts: master,slaves,webserver,database,grafana
+- hosts: master,slaves,webserver,grafana
   become: true
   roles:
     - angstwad.docker_ubuntu

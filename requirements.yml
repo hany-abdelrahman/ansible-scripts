@@ -4,3 +4,7 @@
 
 - name: angstwad.docker_ubuntu
   src: angstwad.docker_ubuntu
+
+- name: indigo-dc.hadoop
+  src: https://github.com/hany-abdelrahman/ansible-role-hadoop
+
