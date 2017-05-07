@@ -19,6 +19,9 @@ ansible_ssh_user=ubuntu
 [hadoop-slaves:vars]
 ansible_ssh_user=ubuntu
 
+[openvpn:vars]
+ansible_ssh_user=ubuntu
+
 [master]
 
 [slaves]
@@ -30,3 +33,5 @@ ansible_ssh_user=ubuntu
 [hadoop-master]
 
 [hadoop-slaves]
+
+[openvpn]

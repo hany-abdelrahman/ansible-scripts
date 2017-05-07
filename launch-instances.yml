@@ -1,6 +1,7 @@
 ---
 - hosts: local
   roles:
+#    - { role: launch_ec2, count: 1, instance_tag: openvpn, host_group: openvpn }
     - { role: launch_ec2, count: 1, instance_tag: hadoop, host_group: hadoop-master, volume_size: 350}
     - { role: launch_ec2, count: 1, instance_tag: hadoop, host_group: hadoop-slaves, volume_size: 350}
     - { role: launch_ec2, count: 3, instance_tag: slaves, host_group: slaves}
