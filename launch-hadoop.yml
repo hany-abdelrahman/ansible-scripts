@@ -1,0 +1,18 @@
+---
+- hosts: hadoop-slaves, hadoop-master
+  tasks:
+    - set_fact: 
+        master_hostname: "{{hostvars[groups['hadoop-master'][0]]['ansible_hostname']}}"
+
+- hosts: hadoop-slaves
+  become: True
+  vars:
+    master: "{{groups['hadoop-master'][0]}}"
+  roles:
+    - { role: 'indigo-dc.hadoop', hadoop_master: '{{master_hostname}}' }
+
+- hosts: hadoop-master
+  become: True
+  roles:
+    - { role: 'indigo-dc.hadoop', hadoop_master: '{{master_hostname}}', hadoop_type_of_node: 'master'}
+
