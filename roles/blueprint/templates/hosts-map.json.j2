@@ -1,0 +1,34 @@
+{
+  "blueprint" : "{{ ambari['blueprint_name'] }}",
+  "default_password" : "{{ ambari['default_password'] }}",
+  "host_groups" :[
+    {
+      "name" : "ambari",
+      "hosts" : [
+        {
+          "fqdn" : "{{ hostvars[groups['ambari'][0]]['ansible_fqdn'] }}"
+        }
+      ]
+    },
+    {
+      "name" : "hadoop-master",
+      "hosts" : [
+        {
+          "fqdn" : "{{ hostvars[groups['hadoop-master'][0]]['ansible_fqdn'] }}"
+        }
+      ]
+    },
+    {
+      "name" : "hadoop-slaves",
+      "hosts" : [
+      {% for host in groups['hadoop-slaves'] %}
+        {
+          "fqdn" : "{{ hostvars[host]['ansible_fqdn'] }}"
+        }{% if not loop.last %}
+        ,
+        {% endif %}
+      {% endfor %}
+      ]
+    }
+  ]
+}

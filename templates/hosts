@@ -1,6 +1,9 @@
 [local]
 localhost ansible_connection=local
 
+[ambari:vars]
+ansible_ssh_user=ec2-user
+
 [master:vars]
 ansible_ssh_user=ubuntu
 
@@ -14,13 +17,15 @@ ansible_ssh_user=ubuntu
 ansible_ssh_user=ubuntu
 
 [hadoop-master:vars]
-ansible_ssh_user=ubuntu
+ansible_ssh_user=ec2-user
 
 [hadoop-slaves:vars]
-ansible_ssh_user=ubuntu
+ansible_ssh_user=ec2-user
 
 [openvpn:vars]
 ansible_ssh_user=ubuntu
+
+[ambari]
 
 [master]
 

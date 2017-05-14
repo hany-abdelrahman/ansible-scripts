@@ -1,8 +1,7 @@
 ---
 - include: init-local.yml
-- include: launch_instances.yml
+- include: launch-instances.yml
 - include: add-python.yml
-- include: launch-hadoop.yml
 - include: add-docker.yml
 - include: launch-grafana.yml
 - include: launch-server.yml

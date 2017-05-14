@@ -1,8 +1,5 @@
-spring.datasource.url=jdbc:mysql://{{groups['database'][0]}}:3306/viewsdb
-spring.datasource.username=dbuser
-spring.datasource.password=dbpassword
-spring.jpa.hibernate.ddl-auto=update
 logging.file=logs/spring-boot-logging.log
 server.port= 8020
 graphite.hostname={{groups['grafana'][0]}}
 graphite.port=2003
+hdfs.uri=hdfs://{{groups['hadoop-master'][0]}}:9000
