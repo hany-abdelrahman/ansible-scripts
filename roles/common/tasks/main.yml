@@ -10,6 +10,7 @@
       - wget
       - screen
       - java7-devel
+      - ftp://mirror.switch.ch/pool/4/mirror/centos/6/os/x86_64/Packages/libtirpc-devel-0.2.1-13.el6.x86_64.rpm
 ##      - "@Development tools"
 
   - name: Disable selinux
