@@ -3,6 +3,8 @@
 - include: launch-instances.yml
 - include: add-python.yml
 - include: add-docker.yml
+- include: launch-ambari.yml
+- include: launch-zipkin.yml
 - include: launch-grafana.yml
 - include: launch-server.yml
 - include: launch-locust.yml

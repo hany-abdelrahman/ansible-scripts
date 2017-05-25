@@ -5,6 +5,13 @@
         "javax.jdo.option.ConnectionUserName" : "{{ ambari['hive_user'] }}",
         "javax.jdo.option.ConnectionPassword" : "{{ ambari['hive_pass'] }}"
       }
+	},
+	{
+	  "hdfs-site": {
+	    "hadoop.htrace.spanreceiver.classes" : "org.htrace.impl.ZipkinSpanReceiver",
+	    "hadoop.htrace.zipkin.collector-hostname" : "{{groups['zipkin'][0]}}",
+	    "hadoop.htrace.zipkin.collector-port" : "9410"
+      }
     }
   ],
   "host_groups" : [

@@ -25,6 +25,9 @@ ansible_ssh_user=ec2-user
 [openvpn:vars]
 ansible_ssh_user=ubuntu
 
+[zipkin:vars]
+ansible_ssh_user=ubuntu
+
 [ambari]
 
 [master]
@@ -40,3 +43,6 @@ ansible_ssh_user=ubuntu
 [hadoop-slaves]
 
 [openvpn]
+
+[zipkin]
+

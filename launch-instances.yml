@@ -5,6 +5,7 @@
     - { role: launch_ec2, count: 1, instance_tag: ambari, host_group: ambari, volume_size: 50, image: ami-f37b4b99 }
     - { role: launch_ec2, count: 1, instance_tag: hadoop, host_group: hadoop-master, volume_size: 350, image: ami-f37b4b99 }
     - { role: launch_ec2, count: 3, instance_tag: hadoop, host_group: hadoop-slaves, volume_size: 350, image: ami-f37b4b99 }
+    - { role: launch_ec2, count: 1, instance_tag: zipkin, host_group: zipkin }
 #    - { role: launch_ec2, count: 3, instance_tag: slaves, host_group: slaves }
 #    - { role: launch_ec2, count: 1, instance_tag: master, host_group: master, volume_size: 200, image: ami-f37b4b99 }
 #    - { role: launch_ec2, count: 1, instance_tag: webserver, host_group: webserver }

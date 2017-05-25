@@ -1,0 +1,7 @@
+---
+- hosts: hadoop-master,hadoop-slaves
+  become: true
+  gather_facts: no
+  tasks:
+    - name: Copy htrace
+      copy: src=./templates/htrace-zipkin.jar dest=/usr/hdp/current/hadoop-client/lib/ mode=0644
