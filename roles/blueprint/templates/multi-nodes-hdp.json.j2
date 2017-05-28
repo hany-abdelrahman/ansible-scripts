@@ -1,30 +1,18 @@
 {
   "configurations" : [
-    {
-      "hive-site" : {
-        "javax.jdo.option.ConnectionUserName" : "{{ ambari['hive_user'] }}",
-        "javax.jdo.option.ConnectionPassword" : "{{ ambari['hive_pass'] }}"
-      }
-	},
 	{
 	  "hdfs-site": {
-	    "hadoop.htrace.spanreceiver.classes" : "org.htrace.impl.ZipkinSpanReceiver",
-	    "hadoop.htrace.zipkin.collector-hostname" : "{{groups['zipkin'][0]}}",
-	    "hadoop.htrace.zipkin.collector-port" : "9410"
+	    "hadoop.trace.spanreceiver.classes" : "org.htrace.impl.ZipkinSpanReceiver",
+       "hadoop.zipkin.collector-hostname" : "{{groups['zipkin'][0]}}",
+       "hadoop.zipkin.collector-port" : "9410"
       }
     }
   ],
   "host_groups" : [
     { "name" : "ambari",
       "components" : [
-        { "name" : "GANGLIA_MONITOR" },
-        { "name" : "GANGLIA_SERVER" },
-        { "name" : "HCAT" },
         { "name" : "HDFS_CLIENT" },
-        { "name" : "HIVE_CLIENT" },
         { "name" : "MAPREDUCE2_CLIENT" },
-        { "name" : "PIG" },
-        { "name" : "TEZ_CLIENT" },
         { "name" : "YARN_CLIENT" },
         { "name" : "ZOOKEEPER_SERVER" }
       ],
@@ -33,34 +21,22 @@
     { "name" : "hadoop-master",
       "components" : [
         { "name" : "APP_TIMELINE_SERVER" },
-        { "name" : "GANGLIA_MONITOR" },
-        { "name" : "HIVE_METASTORE" },
-        { "name" : "HIVE_SERVER" },
-        { "name" : "JOURNALNODE" },
-        { "name" : "MYSQL_SERVER" },
         { "name" : "NAMENODE" },
-        { "name" : "SECONDARY_NAMENODE" },
         { "name" : "RESOURCEMANAGER" },
+  		  { "name" : "HISTORYSERVER" },
+        { "name" : "SECONDARY_NAMENODE" },
         { "name" : "ZOOKEEPER_SERVER" },
-        { "name" : "METRICS_COLLECTOR" },
-        { "name" : "METRICS_MONITOR" },
-        { "name" : "HISTORYSERVER" }
+ 	    { "name" : "YARN_CLIENT" }
       ],
       "cardinality" : "1"
     },
     { "name" : "hadoop-slaves",
       "components" : [
         { "name" : "DATANODE" },
-        { "name" : "GANGLIA_MONITOR" },
-        { "name" : "HCAT" },
         { "name" : "HDFS_CLIENT" },
-        { "name" : "HIVE_CLIENT" },
         { "name" : "JOURNALNODE" },
         { "name" : "MAPREDUCE2_CLIENT" },
-        { "name" : "METRICS_MONITOR" },
         { "name" : "NODEMANAGER" },
-        { "name" : "PIG" },
-        { "name" : "TEZ_CLIENT" },
         { "name" : "YARN_CLIENT" },
         { "name" : "ZOOKEEPER_CLIENT" }
       ],

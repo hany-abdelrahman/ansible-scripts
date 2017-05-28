@@ -1,13 +1,13 @@
 ---
 
-java_home: /etc/alternatives/java_sdk
+java_home: /usr/lib/jvm/jre-1.7.0
 
 # paramaters passed to the various ambari roles
 ambari:
 
   # ambari API vars
   stack_name : HDP
-  stack_version : 2.2.6
+  stack_version : 2.2
 
   # blueprint & cluster creation
   blueprint_name : example
