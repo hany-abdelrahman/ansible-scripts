@@ -1,5 +1,5 @@
 ---
-- hosts: hadoop-master,hadoop-slaves
+- hosts: hadoop-master,hadoop-slaves,webserver
   become: true
   gather_facts: no
   tasks:

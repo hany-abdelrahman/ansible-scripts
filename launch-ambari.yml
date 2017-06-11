@@ -1,7 +1,7 @@
 ---
 
 - name: Needed for accelerated mode
-  hosts: ambari,hadoop-master,hadoop-slaves
+  hosts: ambari,hadoop-master,hadoop-slaves,webserver
   sudo: yes
   roles:
     - { role: geerlingguy.repo-epel }
@@ -11,7 +11,7 @@
     - lineinfile: state=present create=yes dest=/etc/sudoers.d/888-dont-requiretty line="Defaults !requiretty" backup=yes
 
 - name: Apply common configuration to all target nodes
-  hosts: ambari,hadoop-master,hadoop-slaves
+  hosts: ambari,hadoop-master,hadoop-slaves,webserver
   sudo: yes
   roles:
     - common
@@ -23,7 +23,7 @@
     - ambari-server
 
 - name: Ambari agent
-  hosts: ambari,hadoop-master,hadoop-slaves
+  hosts: ambari,hadoop-master,hadoop-slaves,webserver
   sudo: yes
   roles:
     - ambari-agent

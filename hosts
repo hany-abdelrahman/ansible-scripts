@@ -1,6 +1,9 @@
 [local]
 localhost ansible_connection=local
 
+[ambari:vars]
+ansible_ssh_user=ec2-user
+
 [master:vars]
 ansible_ssh_user=ubuntu
 
@@ -8,15 +11,52 @@ ansible_ssh_user=ubuntu
 ansible_ssh_user=ubuntu
 
 [webserver:vars]
+ansible_ssh_user=ec2-user
+
+[grafana:vars]
 ansible_ssh_user=ubuntu
 
+[hadoop-master:vars]
+ansible_ssh_user=ec2-user
+
+[hadoop-slaves:vars]
+ansible_ssh_user=ec2-user
+
+[openvpn:vars]
+ansible_ssh_user=ubuntu
+
+[zipkin:vars]
+ansible_ssh_user=ubuntu
+
+[ambari]
+54.221.144.197
+
 [master]
-52.70.59.25
+52.91.48.91
 
 [slaves]
-54.147.50.96
-54.175.81.205
-54.197.36.69
+54.174.149.2
+54.85.28.178
+34.201.107.237
+54.173.60.42
+52.207.233.76
 
 [webserver]
-54.165.51.234
+54.84.55.72
+
+[grafana]
+54.242.41.47
+
+[hadoop-master]
+34.224.101.156
+
+[hadoop-slaves]
+52.55.187.118
+54.236.212.86
+54.173.10.20
+
+[openvpn]
+
+[zipkin]
+54.164.186.41
+

@@ -3,16 +3,25 @@
   become: true
   tasks:  
     - name: Install JDK
-      apt:  name=openjdk-8-jdk state=present update_cache=yes
+      yum:  name=java-1.7.0-openjdk state=latest
       tags: package
 
     - name: Install GIT
-      apt:  name=git state=present update_cache=yes
+      yum:  name=git state=present update_cache=yes
       tags: package
 
+    - name: Add maven repo
+      get_url: url=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo dest=/etc/yum.repos.d/epel-apache-maven.repo
+  
     - name: Install Maven
-      apt:  name=maven state=present update_cache=yes
+      yum:  name=apache-maven state=present update_cache=yes
       tags: package
+		
+    - name: Increase Open Files Soft Limit
+      pam_limits: domain=* limit_type=soft limit_item=nofile value=10240 	
+
+    - name: Increase Open Files Hard Limit
+      pam_limits: domain=* limit_type=hard limit_item=nofile value=10240 	
 
     - name: Pull Repository
       git:  repo='https://github.com/hany-abdelrahman/example-spring.git' dest=/home/server/ force=yes
@@ -20,7 +29,10 @@
 
     - name: Copy Properties File
       template: src=./templates/application.properties.j2 dest=/home/server/src/main/resources/application.properties
+
+    - name: Build Project with maven
+      shell: mvn -f /home/server/pom.xml clean install -DskipTests
       
     - name: Launch Spring Server
-      shell: nohup mvn -f /home/server/pom.xml clean install spring-boot:start -Dfork=true
+      shell: nohup java -cp /home/server/target/first-0.0.1-SNAPSHOT.jar -Dloader.path=/etc/hadoop/conf,/usr/hdp/current/hadoop-client/lib/htrace-zipkin.jar -DskipTests org.springframework.boot.loader.PropertiesLauncher &
       tags: launch, launch-server 

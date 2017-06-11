@@ -19,6 +19,18 @@
       ]
     },
     {
+      "name" : "webserver",
+      "hosts" : [
+      {% for host in groups['webserver'] %}
+        {
+          "fqdn" : "{{ hostvars[host]['ansible_fqdn'] }}"
+        }{% if not loop.last %}
+        ,
+        {% endif %}
+      {% endfor %}
+      ]
+    },
+    {
       "name" : "hadoop-slaves",
       "hosts" : [
       {% for host in groups['hadoop-slaves'] %}

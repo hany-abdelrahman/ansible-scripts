@@ -9,12 +9,7 @@ NUM_USERS = 10000
 
 class UserBehavior(TaskSet): 
 
-	@task(2)
-	def getCount(self):
-		id = random.randint(0, NUM_VIDEOS)
-		self.client.get("/count/%i" % id, name="/count?id=[id]")
-
-	@task(2)
+	@task(1)
 	def addView(self):
 		data = {
 			"videoId": random.randint(0, NUM_VIDEOS),

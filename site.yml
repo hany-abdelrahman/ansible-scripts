@@ -4,6 +4,7 @@
 - include: add-python.yml
 - include: add-docker.yml
 - include: launch-ambari.yml
+- include: launch-htrace.yml
 - include: launch-zipkin.yml
 - include: launch-grafana.yml
 - include: launch-server.yml

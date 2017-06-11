@@ -17,17 +17,18 @@
 
     - name: Copy Locust File
       template: src=./locust-files/test-random.j2 dest=/home/repos/locustfiles/test.py
+      tags: template
 
 - hosts: master
   become: true
   tasks:
     - name: Start Master Node
-      command: docker run -d -p 8089:8089 -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --master -f /opt/locustfiles/test.py
+      command: docker run -d --name locust-master -p 8089:8089 -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --master -f /opt/locustfiles/test.py
       tags: start-master
 
 - hosts: slaves
   become: true
   tasks:
     - name: Start Slaves Nodes
-      command: docker run -d --net="host" -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --slave --master-host="{{groups['master'][0]}}" -f /opt/locustfiles/test.py
+      command: docker run -d --name locust-slave --net="host" -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --slave --master-host="{{groups['master'][0]}}" -f /opt/locustfiles/test.py
       tags: start-slaves
