@@ -1,9 +1,7 @@
 graphite.hostname={{groups['grafana'][0]}}
 graphite.port=2003
-hdfs.batch.size=10000
+hdfs.batch.size=100000
 hdfs.uri=hdfs://{{groups['hadoop-master'][0]}}:8020
 server.port=8020
-server.tomcat.max-threads=2000
 spring.application.name=backend
-spring.sleuth.sampler.percentage=1.0
 spring.zipkin.baseUrl=http://{{groups['zipkin'][0]}}:9411
