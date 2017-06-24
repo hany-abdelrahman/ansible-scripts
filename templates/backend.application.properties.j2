@@ -1,7 +1,9 @@
 graphite.hostname={{groups['grafana'][0]}}
+graphite.metricname=view-request-instance-{{groups['webserver'].index(ansible_host)}}
 graphite.port=2003
 hdfs.batch.size=100000
 hdfs.uri=hdfs://{{groups['hadoop-master'][0]}}:8020
 server.port=8020
 spring.application.name=backend
 spring.zipkin.baseUrl=http://{{groups['zipkin'][0]}}:9411
+instance.id={{groups['webserver'].index(ansible_host)}}

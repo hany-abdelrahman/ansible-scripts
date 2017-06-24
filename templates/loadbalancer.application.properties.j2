@@ -1,0 +1,7 @@
+backend.ribbon.eureka.enabled=false
+backend.ribbon.listOfServers={{groups['webserver']|join(":8020,")}}:8020
+backend.ribbon.ServerListRefreshInterval=15000
+graphite.hostname={{groups['grafana'][0]}}
+graphite.port=2003
+spring.application.name=loadbalancer
+server.port=8888

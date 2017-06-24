@@ -24,6 +24,6 @@ class UserBehavior(TaskSet):
 
 class WebsiteUser(HttpLocust):
 	task_set = UserBehavior
-	min_wait = 10
-	max_wait = 9000
-	host = "http://{{groups['webserver'][0]}}:8020"
+	min_wait = 0
+	max_wait = 0
+	host = "http://{{groups['loadbalancer'][0]}}:8888"

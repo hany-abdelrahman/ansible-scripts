@@ -23,12 +23,12 @@
   become: true
   tasks:
     - name: Start Master Node
-      command: docker run -d --name locust-master -p 8089:8089 -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --master -f /opt/locustfiles/test.py
+      command: docker run -d --name locust-master --ulimit nofile=1000000:1000000 -p 8089:8089 -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --master -f /opt/locustfiles/test.py
       tags: start-master
 
 - hosts: slaves
   become: true
   tasks:
     - name: Start Slaves Nodes
-      command: docker run -d --name locust-slave --net="host" -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --slave --master-host="{{groups['master'][0]}}" -f /opt/locustfiles/test.py
+      command: docker run -d --name locust-slave-2 --ulimit nofile=1000000:1000000 --net="host" -p 5557:5557 -p 5558:5558 -v /home/repos/locustfiles:/opt/locustfiles locust locust --slave --master-host="{{groups['master'][0]}}" -f /opt/locustfiles/test.py
       tags: start-slaves

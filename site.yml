@@ -7,5 +7,6 @@
 - include: launch-htrace.yml
 - include: launch-zipkin.yml
 - include: launch-grafana.yml
+- include: launch-loadbalancer.yml
 - include: launch-server.yml
 - include: launch-locust.yml

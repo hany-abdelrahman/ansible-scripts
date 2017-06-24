@@ -1,14 +1,15 @@
 ---
 - hosts: local
   roles:
-    - { role: launch_ec2, count: 1, instance_tag: openvpn, host_group: openvpn }
+#    - { role: launch_ec2, count: 1, instance_tag: openvpn, host_group: openvpn }
     - { role: launch_ec2, count: 1, instance_tag: ambari, host_group: ambari, volume_size: 50, image: ami-f37b4b99 }
     - { role: launch_ec2, count: 1, instance_tag: hadoop, host_group: hadoop-master, volume_size: 350, image: ami-f37b4b99 }
     - { role: launch_ec2, count: 3, instance_tag: hadoop, host_group: hadoop-slaves, volume_size: 350, image: ami-f37b4b99 }
     - { role: launch_ec2, count: 1, instance_tag: zipkin, host_group: zipkin, instance_type: t2.medium }
-    - { role: launch_ec2, count: 5, instance_tag: slaves, host_group: slaves, instance_type: t2.micro }
-    - { role: launch_ec2, count: 1, instance_tag: master, host_group: master, instance_type: t2.micro }
-    - { role: launch_ec2, count: 1, instance_tag: webserver, host_group: webserver, volume_size: 30, image: ami-f37b4b99, instance_type: m4.xlarge }
+    - { role: launch_ec2, count: 7, instance_tag: slaves, host_group: slaves, instance_type: t2.medium }
+    - { role: launch_ec2, count: 1, instance_tag: master, host_group: master, instance_type: t2.medium }
+    - { role: launch_ec2, count: 3, instance_tag: webserver, host_group: webserver, volume_size: 30, image: ami-f37b4b99, instance_type: m4.xlarge }
+    - { role: launch_ec2, count: 1, instance_tag: loadbalancer, host_group: loadbalancer, volume_size: 30, image: ami-f37b4b99, instance_type: m4.xlarge }
     - { role: launch_ec2, count: 1, instance_tag: grafana, host_group: grafana, instance_type: t2.medium }
 
   post_tasks:
